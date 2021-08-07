@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTyes) => {
             dateOfDeath: DataTyes.DATE,
             palceOfBirth: DataTyes.STRING,
             shortDescription: DataTyes.STRING,
+            imageName: DataTyes.STRING,
         },
         {
             underscored: true,

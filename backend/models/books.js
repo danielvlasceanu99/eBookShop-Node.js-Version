@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTyes) => {
             genre: DataTyes.STRING,
             rating: DataTyes.DOUBLE,
             price: DataTyes.DOUBLE,
+            discount: DataTyes.DOUBLE,
+            imageName: DataTyes.STRING,
         },
         {
             underscored: true,
