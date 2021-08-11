@@ -2,6 +2,7 @@ const express = require("express");
 const { Op } = require("sequelize");
 const BookDb = require("../models").Book;
 const AuthorDB = require("../models").Author;
+const ReviewDB = require("../models").Review;
 
 const controller = {
     addBook: async (req, res) => {
@@ -21,23 +22,19 @@ const controller = {
 
         if (!book.isbn) {
             errors.isbn = "Missing ISBN";
-            console.log("Missing ISBN");
         } else if (!book.isbn.match("^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$")) {
             errors.isbn = "Invalid ISBN";
-            console.log("Invalid ISBN");
         } else {
             const existing = await BookDb.findOne({
                 where: { isbn: book.isbn },
             });
             if (existing) {
                 errors.isbn = "ISBN already used";
-                console.log("ISBN Already used");
             }
         }
 
         if (!book.title) {
             errors.title = "Missing title";
-            console.log("MIssing title");
         } else {
             book.title = book.title
                 .split(" ")
@@ -47,38 +44,31 @@ const controller = {
 
         if (!book.description) {
             errors.description = "Missing description";
-            console.log("Missing description");
         }
 
         if (!book.genre) {
             errors.genre = "Missing genre";
-            console.log("Missing genre");
         }
 
         if (!book.price) {
             errors.price = "Missing price";
-            console.log("Missing price");
         }
 
         if (!book.discount) {
             book.discount = 0;
         } else if (book.discount > 1 || book.discount < 0) {
             errors.discount = "Invalid discount";
-            console.log("Invalid discount");
         }
 
         if (!book.imageName) {
-            errors.imageName = "Missing image name";
-            console.log("Missing image name");
+            errors.imageName = "Missing image";
         }
         if (!book.authorId) {
             errors.authorId = "Missing author";
-            console.log("Missing author");
         } else {
             const author = await AuthorDB.findByPk(book.authorId);
             if (!author) {
                 errors.authorId = "Inexistent author";
-                console.log("Inexistent author");
             }
         }
 
@@ -124,7 +114,7 @@ const controller = {
     getBook: async (req, res) => {
         try {
             const book = await BookDb.findByPk(req.params.id, {
-                include: [AuthorDB],
+                include: [AuthorDB, ReviewDB],
             });
             if (book) {
                 res.status(201).send(book);
