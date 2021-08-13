@@ -196,7 +196,6 @@ const controller = {
             }
 
             if (Object.keys(errors).length === 0) {
-                console.log("here");
                 await book
                     .update({
                         isbn: req.body.isbn,
@@ -225,9 +224,9 @@ const controller = {
 
     deleteBook: async (req, res) => {
         await BookDb.findByPk(req.params.id)
-            .then(async (product) => {
-                if (product) {
-                    await product.destroy();
+            .then(async (book) => {
+                if (book) {
+                    await book.destroy();
                     res.status(201).send({ message: "Book deleted" });
                 } else {
                     res.status(404).send({ message: "Book not found" });
