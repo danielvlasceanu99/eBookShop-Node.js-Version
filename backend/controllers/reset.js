@@ -3,7 +3,7 @@ const connection = require("../models").connection;
 const controller = {
     reset: (req, res) => {
         connection
-            .sync({ focce: true })
+            .sync({ force: true })
             .then(() => {
                 res.status(200).send({ message: "Database reseted" });
             })

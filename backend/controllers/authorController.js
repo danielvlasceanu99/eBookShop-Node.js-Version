@@ -60,6 +60,7 @@ const controller = {
             res.status(400).send(errors);
         }
     },
+
     getAllAuthors: async (req, res) => {
         try {
             const authors = await AuthotrDb.findAll({

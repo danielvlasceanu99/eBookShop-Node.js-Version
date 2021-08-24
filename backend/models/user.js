@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTyes) => {
             email: DataTyes.STRING,
             password: DataTyes.STRING,
             role: DataTyes.STRING,
+            profilePictureName: DataTyes.STRING,
         },
         {
             underscored: true,

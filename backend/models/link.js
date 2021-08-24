@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTyes) => {
         "link",
         {
             linkType: DataTyes.STRING,
+            date: DataTyes.DATE,
         },
         {
             underscored: true,
