@@ -1,10 +1,7 @@
-const express = require("express");
 const userDb = require("../models").User;
-const bookDb = require("../models").Book;
-const LinkDb = require("../models").Link;
 
 const controller = {
-    addUser: async (req, res) => {
+    registerUser: async (req, res) => {
         const user = {
             name: req.body.name,
             email: req.body.email,
@@ -39,7 +36,7 @@ const controller = {
 
         if (!user.password) {
             errors.password = "Missing password";
-        } else if (!user.password.match(/(^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$)/)) {
+        } else if (!user.password.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
             errors.password = "Invalid password";
         }
 
@@ -63,6 +60,44 @@ const controller = {
         } else {
             res.status(400).send(errors);
         }
+    },
+
+    changePassword: async (req, res) => {
+        await userDb
+            .findByPk(req.params.id)
+            .then(async (user) => {
+                if (user) {
+                    if (!req.body.password) {
+                        res.status(400).send({ message: "Missing new password" });
+                    } else if (!req.body.password.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
+                        res.status(400).send({ message: "Invalid password" });
+                    } else {
+                        await user
+                            .update({
+                                password: req.body.password,
+                            })
+                            .then(() => {
+                                res.status(201).send({ message: "Password updated" });
+                            })
+                            .catch(() => {
+                                res.status(500).send({ message: "Server error" });
+                            });
+                    }
+                } else {
+                    res.stauts(404).send({ message: "User not found" });
+                }
+            })
+            .catch(() => {
+                res.status(500).send({ message: "Server error" });
+            });
+    },
+
+    login: async (req, res) => {
+        res.status(501).send({ message: "Not implemented" });
+    },
+
+    changeProfilePicture: async (req, res) => {
+        res.status(501).send({ message: "Not implemented" });
     },
 };
 

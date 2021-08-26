@@ -1,4 +1,3 @@
-const express = require("express");
 const { Op } = require("sequelize");
 const BookDb = require("../models").Book;
 const AuthorDB = require("../models").Author;

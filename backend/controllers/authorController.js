@@ -1,4 +1,3 @@
-const express = require("express");
 const AuthotrDb = require("../models").Author;
 const BookDb = require("../models").Book;
 
