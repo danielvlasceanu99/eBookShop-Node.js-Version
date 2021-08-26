@@ -3,6 +3,7 @@ const bookController = require("./bookController");
 const authorController = require("./authorController");
 const reviewController = require("./reviewController");
 const userController = require("./userController");
+const linkController = require("./linkController");
 
 module.exports = {
     reset,
@@ -10,4 +11,5 @@ module.exports = {
     authorController,
     reviewController,
     userController,
+    linkController,
 };
