@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <title>eBookShop</title>
+
+        <!-- W3.CSS -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-vivid.css" />
+
+        <!-- My CSS -->
+        <link rel="stylesheet" href="styles/styles.css" />
+
+        <!-- Font Awesome css -->
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+            integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+            crossorigin="anonymous"
+        />
+
+        <!-- Angular.Js script -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+
+        <!-- Toasters -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    </head>
+    <body ng-app="eBookShop">
+        <!-- <div class="w3-display-container">
+            <img
+                src="https://drive.google.com/uc?export=view&id=1kZQk3gmxG5YwdSE5fjRWr6J9G9Nczrg1"
+                alt="Promotions"
+                class="w3-padding w3-display-topmiddle"
+                style="width: 75%"
+            />
+        </div> -->
+        <div>
+            <div class="w3-bar w3-border w3-light-gray w3-card-4 w3-xlarge">
+                <a href="#/!" class="w3-bar-item w3-button w3-hover-green w3-ripple"><i class="fa fa-home"></i> Home</a>
+                <a href="#!bestsellers?id=2" class="w3-bar-item w3-button w3-hover-green w3-ripple">Bestsellers</a>
+                <a class="w3-bar-item w3-button w3-hover-green w3-ripple">Promotions</a>
+            </div>
+        </div>
+
+        <div ng-view></div>
+
+        <div class="footer">
+            <div class="w3-bar w3-border w3-light-gray w3-card-4 w3-large">
+                <a class="w3-bar-item w3-button w3-hover-light-gray"><i class="fas fa-user-secret"></i> Privacy</a>
+            </div>
+        </div>
+
+        <script src="./scripts/index.js"></script>
+    </body>
+</html>

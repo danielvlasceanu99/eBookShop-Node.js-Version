@@ -66,7 +66,10 @@ const controller = {
 
     getAllLinks: async (req, res) => {
         await LinkDb.findAll({
-            where: { userId: req.params.id },
+            where: {
+                userId: req.params.id,
+                linkType: req.body.linkType,
+            },
             include: [BookDb],
         })
             .then((links) => {
