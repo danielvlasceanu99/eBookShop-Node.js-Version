@@ -1,13 +1,15 @@
-<div class="w3-card-4 w3-ligth-grey w3-border w3-round-small w3-border-green">
+<div class="w3-card-4 w3-border w3-round-small w3-border-gray">
     <a href="#!details?id=book.id" style="text-decoration: none">
         <div class="w3-container w3-center">
             <img src="../media/noimage.jpeg" alt="Book image" style="width: 80%; margin-top: 5%" />
-            <h3>{{book.title}}</h3>
-            <div>
-                &#36;{{book.price - book.price * discount | currency }}
-                <span ng-show="book.discount" class="w3-text-grayd">{{book.price | currency }}</span>
+            <h4>{{book.title}}</h4>
+            <h5>by {{book.author.name}}</h5>
+            <div ng-show="book.discount">
+                {{book.price - book.price * book.discount | currency }}
+                <span class="w3-text-gray"><s>{{book.price | currency }}</s></span>
             </div>
-            <div>{{book.rating | currency}} <i class="fas fa-book-open"></i></div>
+            <div ng-show="!book.discount">{{book.price | currency }}</div>
+            <div>{{book.rating}} <i class="fas fa-book-open"></i></div>
         </div>
     </a>
 </div>

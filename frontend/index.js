@@ -18,9 +18,49 @@ app.controller("bestsellersController", function ($scope, $location) {
 });
 
 app.controller("homeController", ($scope, $http) => {
-    const initialGet = () => {
+    $scope.genres = [
+        "Action and adventure",
+        "Autobiography",
+        "Biography",
+        "Business/economics",
+        "Children's",
+        "Crime",
+        "Encyclopedia",
+        "Drama",
+        "Fairytale",
+        "Fantasy",
+        "History",
+        "Humor",
+        "Horror",
+        "Mystery",
+        "Memoir",
+        "Philosophy",
+        "Poetry",
+        "Romance",
+        "Satire",
+        "True crime",
+        "Science fiction",
+        "Short story",
+        "Science",
+        "Thriller",
+        "Western",
+        "Travel",
+        "Young adult",
+        "genre1",
+        "genre2",
+    ];
+
+    $scope.getBooks = () => {
+        var url = "getAllBooks";
+        if ($scope.genre || $scope.title) {
+            url += "/?";
+            $scope.genre ? (url += `genre=${$scope.genre}`) : 0;
+            $scope.title ? (url += `title=${$scope.title}`) : 0;
+
+            $scope.genre = $scope.title = "";
+        }
         $http
-            .get("getAllBooks")
+            .get(url)
             .then((response) => {
                 $scope.bookList = response.data;
             })
@@ -34,5 +74,10 @@ app.controller("homeController", ($scope, $http) => {
             });
     };
 
-    initialGet();
+    $scope.getBooks();
+
+    $scope.filter = (genre) => {
+        $scope.genre = genre;
+        $scope.getBooks();
+    };
 });

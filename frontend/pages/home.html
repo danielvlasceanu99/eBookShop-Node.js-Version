@@ -1,16 +1,34 @@
 <div class="w3-container" ng-controller="homeController">
-    <div>
-        <img
-            src="../media/saleposter.jpg"
-            alt="Promotions"
-            class="w3-padding"
-            style="display: block; margin-left: auto; margin-right: auto; width: 70%"
-        />
+    <img
+        src="../media/saleposter.jpg"
+        alt="Promotions"
+        class="w3-padding"
+        style="display: block; margin-left: auto; margin-right: auto; width: 81.5%"
+    />
+    <div class="w3-container w3-row" style="padding: 5% 10%">
+        <div class="w3-col m3 w3-dropdown-hover w3-white w3-margin-top">
+            <button class="w3-button w3-block w3-left-align w3-green w3-hover-green">Genre</button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4" style="max-height: 500px; overflow: auto">
+                <button class="w3-bar-item w3-button" ng-repeat="genre in genres" ng-click="filter(genre)">
+                    {{genre}}
+                </button>
+            </div>
+        </div>
+        <div class="w3-col m9 w3-margin-top">
+            <div class="w3-row">
+                <div class="w3-col s8" style="padding: 0 1%">
+                    <input type="text" class="w3-input" placeholder="Title..." />
+                </div>
+                <div class="w3-col s4">
+                    <button class="w3-button w3-green w3-hover-green w3-right w3-block">Search</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div clas="w3-row w3-container">
+    <div class="w3-row w3-container" style="padding: 0 10%">
         <div
             class="w3-col l3 m4 s6 w3-center"
-            style="padding: 0 5px 5px 5px"
+            style="padding: 5px"
             ng-repeat="book in bookList"
             ng-include="'../components/book.html'"
         ></div>
