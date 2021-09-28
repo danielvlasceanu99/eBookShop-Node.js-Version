@@ -6,15 +6,32 @@ app.config(($routeProvider) => {
         })
         .when("/bestsellers", {
             templateUrl: "./pages/bestsellers.html",
+        })
+        .when("/details", {
+            templateUrl: "./pages/details.html",
+        });
+});
+
+app.controller("detailsController", ($scope, $location, $http) => {
+    $scope.id = $location.search().id;
+    var url = "getBook" + "/" + $scope.id;
+    $http
+        .get(url)
+        .then((response) => {
+            $scope.book = response.data;
+        })
+        .catch((error) => {
+            if (error.data) {
+                const errors = error.data;
+                Object.keys(errors).forEach((key) => {
+                    toastr.error(errors[key]);
+                });
+            }
         });
 });
 
 app.controller("bestsellersController", function ($scope, $location) {
     $scope.merge = "merge";
-
-    $scope.id = $location.search().id;
-
-    console.log($scope.id);
 });
 
 app.controller("homeController", ($scope, $http) => {
@@ -73,11 +90,14 @@ app.controller("homeController", ($scope, $http) => {
                 }
             });
     };
-
     $scope.getBooks();
 
     $scope.filter = (genre) => {
         $scope.genre = genre;
+        $scope.getBooks();
+    };
+
+    $scope.search = () => {
         $scope.getBooks();
     };
 });

@@ -1,0 +1,28 @@
+<div class="container" ng-controller="detailsController">
+    <div class="w3-container w3-row" style="padding: 3% 10%">
+        <div class="w3-col m3 w3-hide-small">
+            <img src="../media/{{book.imageName}}" alt="{{book.imageName}}" />
+        </div>
+        <div class="w3-col m6" style="padding-right: 5%">
+            <h3>{{book.title}} <span class="w3-tag w3-round-large w3-green w3-center">{{book.genre}}</span></h3>
+            <div>by {{book.author.name}}</div>
+            <br />
+            <div>
+                <i>{{book.description}}</i>
+            </div>
+            <br />
+            <div>{{book.rating}} <i class="fas fa-book-open"></i></div>
+        </div>
+        <div class="w3-col m3">
+            <h2>{{book.price | currency}}</h2>
+            <div class="w3-bar w3-green">
+                <button class="w3-bar-item w3-button w3-green w3-hover-green" style="width: 50%">Add to cart</button>
+                <button class="w3-bar-item w3-button w3-green w3-hover-green" style="width: 50%">
+                    Add to wishlist
+                </button>
+            </div>
+
+            <div class=""></div>
+        </div>
+    </div>
+</div>

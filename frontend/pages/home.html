@@ -17,10 +17,12 @@
         <div class="w3-col m9 w3-margin-top">
             <div class="w3-row">
                 <div class="w3-col s8" style="padding: 0 1%">
-                    <input type="text" class="w3-input" placeholder="Title..." />
+                    <input type="text" ng-model="title" class="w3-input" placeholder="Title..." />
                 </div>
                 <div class="w3-col s4">
-                    <button class="w3-button w3-green w3-hover-green w3-right w3-block">Search</button>
+                    <button class="w3-button w3-green w3-hover-green w3-right w3-block" ng-click="search()">
+                        Search
+                    </button>
                 </div>
             </div>
         </div>
